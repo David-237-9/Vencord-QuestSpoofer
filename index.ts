@@ -2,10 +2,12 @@ import definePlugin from "@utils/types";
 
 import Settings from "./settings";
 import runScript from "./script";
+import { checkForUpdates } from "./updateChecker";
 
 const BUTTON_ID = "vencord-quest-script-button";
 
-const pluginName = "QuestSpoofer";
+const spacedPluginName = "Quest Spoofer";
+const pluginName = spacedPluginName.replaceAll(" ", "");
 
 let observer: MutationObserver | null = null;
 let syncScheduled = false;
@@ -158,6 +160,10 @@ export default definePlugin({
 
     start() {
         console.log(`[${pluginName}] Started`);
+
+        if (Settings.store.checkForUpdates) {
+            checkForUpdates(spacedPluginName);
+        }
 
         syncButton();
 
