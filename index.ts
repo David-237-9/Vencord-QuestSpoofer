@@ -159,8 +159,6 @@ export default definePlugin({
     settings: Settings,
 
     start() {
-        console.log(`[${pluginName}] Started`);
-
         if (Settings.store.checkForUpdates) {
             checkForUpdates(spacedPluginName);
         }
@@ -176,8 +174,6 @@ export default definePlugin({
     },
 
     stop() {
-        console.log(`[${pluginName}] Stopped`);
-
         observer?.disconnect();
         observer = null;
 
